@@ -1,0 +1,153 @@
+table 'Semantic Model Measures'
+	lineageTag: 6f5ed6e2-382e-4967-b785-246bf22e4d07
+	sourceLineageTag: [dbo].[SemanticModelMeasures]
+
+	measure 'Semantic Model Measure Count' =
+			CALCULATE (
+			    COUNTROWS ( 'Semantic Model Measures' ),
+			    USERELATIONSHIP ( 'Semantic Model Measures'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Measures'[Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Measures'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Measures'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Measures'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Measures'[Semantic Model ID], 'Semantic Models'[Semantic Model ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: c01e3b51-28de-4a30-b97a-ce2212b441ab
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: add85c23-b1d1-45f8-a969-d137ce4ae9df
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 4fa704e0-cf95-469e-b290-3e901473716d
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 1d8caf69-fc46-498e-ae29-eac6e6ab7a7c
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: c041c505-2957-456b-8d8f-ec572498b36e
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 782eb1bf-4d60-4844-97da-036d50dbe3d3
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 1a40d282-7472-4ff5-b55b-dc6a0fdc5d70
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Table Name Distinct'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: dba584cf-eba0-4903-9496-49c0f858d1d6
+		sourceLineageTag: TableNameDistinct
+		summarizeBy: none
+		sourceColumn: TableNameDistinct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Measure Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cfc09309-6796-4fef-be89-ccd94c9676ff
+		sourceLineageTag: MeasureName
+		summarizeBy: none
+		sourceColumn: MeasureName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Hidden'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: bf6ed692-2c2f-4f35-bab3-08a998f32e5e
+		sourceLineageTag: IsHidden
+		summarizeBy: none
+		sourceColumn: IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Measure Description'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d7c28e37-8243-4779-8238-a672d4b4ac01
+		sourceLineageTag: MeasureDescription
+		summarizeBy: none
+		sourceColumn: MeasureDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Measure Expression'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f3825b09-ddc4-4e05-b970-fba8e797e241
+		sourceLineageTag: MeasureExpression
+		summarizeBy: none
+		sourceColumn: MeasureExpression
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SemanticModelMeasures = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: SemanticModelMeasures
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

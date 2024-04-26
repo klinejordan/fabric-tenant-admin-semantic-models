@@ -1,0 +1,170 @@
+table 'Dashboard Tiles'
+	lineageTag: 1be7b051-3611-445c-ac8c-d0e86c0e5335
+	sourceLineageTag: [dbo].[DashboardTiles]
+
+	measure 'Dashboard Tile Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Power BI Lineage'[Dashboard Tile ID] ),
+			    'Power BI Lineage'[Dashboard Tile ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile Dashboard ID], 'Dashboards'[Dashboard ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile App ID], 'Apps'[App ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile Semantic Model ID], 'Semantic Models'[Semantic Model ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile Report ID], 'Reports'[Report ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Tile Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 30673711-73fe-4fb7-bcac-d0291d192792
+
+	measure 'Selected Dashboard Tile' =
+			IF (
+			    HASONEVALUE ( 'Dashboard Tiles'[Dashboard Tile ID] ),
+			    SELECTEDVALUE ( 'Dashboard Tiles'[Dashboard Tile Title] ),
+			    "Select a single dashboard tile"
+			)
+		dataType: string
+		lineageTag: b12ce662-a16f-4681-bf4b-4fd6b17f1650
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: f33eec23-9cce-47a1-bf9f-9ddf7c2cef18
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 17781700-13fb-4eb4-8984-85e4890ca422
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 4e26a332-b05c-4775-a21b-2f20dac03c1a
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: ccb3f59f-b686-41ab-99b8-075f9ae1e7aa
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: aac9f946-a666-4698-aea0-c7d66106c0cd
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: dbd4e0db-4389-4b2b-b8ae-dfbe63a990c4
+		sourceLineageTag: AppID
+		summarizeBy: none
+		sourceColumn: AppID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dashboard ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 58962d24-8eb3-47b7-a7a3-0070c3063b80
+		sourceLineageTag: DashboardID
+		summarizeBy: none
+		sourceColumn: DashboardID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 943e3d32-b2b7-4c1b-99b0-cd267085857e
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: bb52ac88-d04b-4a37-ab14-0ded6d7d957d
+		sourceLineageTag: ReportID
+		summarizeBy: none
+		sourceColumn: ReportID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dashboard Tile ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 1429818e-6d3b-49ab-a120-1b5e0235b441
+		sourceLineageTag: DashboardTileID
+		summarizeBy: none
+		sourceColumn: DashboardTileID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dashboard Tile Title'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d0ef59ec-1b12-4b87-9d3c-f76b2ff66cd7
+		sourceLineageTag: DashboardTileTitle
+		summarizeBy: none
+		sourceColumn: DashboardTileTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DashboardTiles = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: DashboardTiles
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

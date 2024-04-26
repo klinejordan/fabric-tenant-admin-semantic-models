@@ -1,0 +1,110 @@
+table Apps
+	lineageTag: 6e631541-6995-4003-bfc7-78c792982d41
+	sourceLineageTag: [dbo].[Apps]
+
+	measure 'App Count' =
+			CALCULATE (
+			    COUNTROWS ( Workspaces ),
+			    FILTER (
+			        VALUES ( Workspaces[Workspace ID] ),
+			        [App Report Count] > 0
+			    )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: b61ccf2d-217b-454a-b4a7-678f001d0bcf
+
+	measure 'Selected App' =
+			IF (
+			    HASONEVALUE ( 'Apps'[App ID] ),
+			    SELECTEDVALUE ( 'Apps'[App Name] ),
+			    "Select a single app"
+			)
+		dataType: string
+		lineageTag: fa2a8386-7e9b-4c20-b82b-d0a037634939
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: d6af2cc6-378b-4d45-86c1-43c81ad77a9f
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 93cc6599-de4a-4a53-b3f0-7ff57d9da369
+		sourceLineageTag: AppID
+		summarizeBy: none
+		sourceColumn: AppID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e2a07a1d-b706-4c65-8cea-f3cd7d11d670
+		sourceLineageTag: AppName
+		summarizeBy: none
+		sourceColumn: AppName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Description'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 693c1985-a89a-46ea-9a1a-e06441446788
+		sourceLineageTag: AppDescription
+		summarizeBy: none
+		sourceColumn: AppDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Publisher'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 128a3748-495f-4bb4-80a7-6d3de60af50e
+		sourceLineageTag: AppPublisher
+		summarizeBy: none
+		sourceColumn: AppPublisher
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Last Updated Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f012840f-09c6-40c3-b8b5-4b4e2889bcce
+		sourceLineageTag: AppLastUpdatedDatetime
+		summarizeBy: none
+		sourceColumn: AppLastUpdatedDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Last Updated Date'
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		sourceProviderType: datetime2
+		lineageTag: f012840f-09c6-40c3-b8b5-4b4e2889bccd
+		sourceLineageTag: AppLastUpdatedDate
+		summarizeBy: none
+		sourceColumn: AppLastUpdatedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Apps = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Apps
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

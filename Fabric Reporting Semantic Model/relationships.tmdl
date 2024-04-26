@@ -1,0 +1,904 @@
+relationship 7d342859-9296-5ce7-e1a7-b1177ba6ddd9
+	isActive: false
+	state: ready
+	fromColumn: 'Dashboard Permissions'.'App ID'
+	toColumn: Apps.'App ID'
+
+relationship 604df34b-e034-f5eb-ab13-ba32310c48c7
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard ID'
+	toColumn: Dashboards.'Dashboard ID'
+
+relationship f1190130-5cd6-4ff0-9edd-db3743b0a4c1
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile ID'
+	toColumn: 'Dashboard Tiles'.'Dashboard Tile ID'
+
+relationship b090e795-0747-4665-92f9-dc11511b1ad5
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard App ID'
+	toColumn: Apps.'App ID'
+
+relationship e5956705-64fe-4500-a415-b38e0d04016c
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship d58156e4-9c98-4a3d-8d20-9baf3d87d262
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship f9fc400d-81c5-4e17-a9f9-e5d4cc0fb06b
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 9ec1caae-a3c5-491b-84be-9ede96a1dbcd
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship f8a99a15-5ab3-b8e9-d9d1-a5127ddcbd11
+	state: ready
+	fromColumn: 'Semantic Model Tables'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship bfbda221-e86a-ec36-5808-d3d5a79501a8
+	state: ready
+	fromColumn: 'Semantic Model Columns'.'Table Name Distinct'
+	toColumn: 'Semantic Model Tables'.'Table Name Distinct'
+
+relationship 531fc550-de5c-3350-c430-72cad70bf435
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Members'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship 8b931f4a-b339-f40b-4705-9fd36dc33eda
+	state: ready
+	fromColumn: 'Semantic Model Table Sources'.'Table Name Distinct'
+	toColumn: 'Semantic Model Tables'.'Table Name Distinct'
+
+relationship c103c6d9-b6fb-34e0-9a68-1138719f7117
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Table Permissions'.'Role Table Name Distinct'
+	toColumn: 'Semantic Model Tables'.'Table Name Distinct'
+
+relationship f60dc878-8073-ca15-a3a1-b32c70efb755
+	state: ready
+	fromColumn: 'Semantic Model Roles'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship da1ef479-c42f-f0f5-ee6d-c7c037d07431
+	state: ready
+	fromColumn: 'Semantic Model Role Table Permissions'.'Role Name Distinct'
+	toColumn: 'Semantic Model Roles'.'Role Name Distinct'
+
+relationship c6c80c33-27c1-aa34-a739-aaa373d92f4a
+	state: ready
+	fromColumn: 'Semantic Model Role Members'.'Role Name Distinct'
+	toColumn: 'Semantic Model Roles'.'Role Name Distinct'
+
+relationship 81ecf849-3176-f2a1-6cce-e91d9903089e
+	state: ready
+	fromColumn: 'Semantic Model Permissions'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship efb8d01f-c3ca-c808-310e-2f5d635cec1d
+	state: ready
+	fromColumn: 'Semantic Model Measures'.'Table Name Distinct'
+	toColumn: 'Semantic Model Tables'.'Table Name Distinct'
+
+relationship f2262de1-19c4-5450-b86b-38922b874d74
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Measures'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship d419abf2-8e09-050a-ca11-d60dfc6cee03
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Table Permissions'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship 0db983b2-ff90-d908-8b10-ba73eea473cb
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Table Sources'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship f42e3b90-a927-46ea-b2fa-d1fc603c22d5
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Columns'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship bd3860dc-7aec-47f1-b011-5211189d79fd
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Measures'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 7b76e49e-33da-4102-b166-dde28888caa1
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Measures'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 3268ea63-b519-42ae-9a4a-981628d2d282
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Measures'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship cf5b5eb5-73c0-4063-b065-a603c5eb5d69
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Measures'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 0fddc12b-eff8-4c2c-899d-2f4c4cb67b75
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Measures'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 51421b0e-5446-44ea-b644-378d2cfb0d6a
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Table Sources'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship ae65971e-ce57-4a3b-b6ba-417743b9e61a
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Columns'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 479909ff-52c1-456d-ab62-b77d771b0e67
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Columns'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship de94c69d-66b9-45d3-8d8e-c753204becb9
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Columns'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 92d440a3-f693-45ed-8dec-bd67e3f3cbd6
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Members'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship bd81abd4-3a90-4c2f-9b3b-64cb0ed90b9e
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Roles'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 178c030e-4413-41dd-969a-2c9693909c85
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Roles'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship e07cb736-7f21-4c02-bbee-4851dd632b50
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Roles'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 1ed33852-36b9-45fa-834f-3a10e9849b79
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Columns'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship e6a6986a-e396-4ab1-8cd8-2424e25c40ba
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Table Permissions'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 0f84a63b-9930-4546-9a46-c9a335f6f9fa
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Roles'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship ee840d79-f11e-4e17-82b1-1e56e73c4f9f
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Members'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship de549fea-27ed-4521-9da3-2fbf07afa0a1
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Members'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship e89ccddc-c34f-4cac-94b1-c9a79fd3f94a
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Members'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 68aa5bd9-8394-4041-a7bb-2fbdaa4790c6
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Members'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship c57fd94b-f64c-4ba3-8241-14e5216d0051
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Tables'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 725bcbdc-a305-4b07-9c14-299df9d75202
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Tables'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 9f5cb76a-fd00-4543-8c91-a26f194723b3
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Tables'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship df9e5107-591f-48f8-8196-4fd93723b350
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Table Permissions'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 9d4228c1-4bff-4e23-a1b1-bbf0f8f5c0cb
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Columns'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 1fc3184c-ed6b-4550-b1b8-e0ff2d687408
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Table Permissions'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 3e3d3edb-d07f-4376-9693-1cc0285d9532
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Table Permissions'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship d5604e0e-89af-4452-8c86-04833f48c90e
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Role Table Permissions'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 2e914193-c5ff-4ed7-add6-68a6819981b3
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Tables'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 639cf2ad-1cdb-4af2-9af1-0641ab0e109d
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Tables'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship cf20de68-c5bc-464f-a03a-72fcd88c72d7
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Report ID'
+	toColumn: Reports.'Report ID'
+
+relationship d5e4549e-fa4c-4548-a2e3-7d61a9b2ec85
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dataflow ID'
+	toColumn: Dataflows.'Dataflow ID'
+
+relationship dfb4a826-32be-4cc5-ba3b-081d7fbffca2
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship 5309e089-5698-4df3-9b8d-815e300d63cc
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datamart ID'
+	toColumn: Datamarts.'Datamart ID'
+
+relationship 8c84caec-90b4-4dc0-8c47-6227b59cbc6b
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Report App ID'
+	toColumn: Apps.'App ID'
+
+relationship 985dc780-9a23-41b1-a362-ae6b90a781ec
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Report Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 1e5249dd-0f5c-4470-9008-5c41836a6fbb
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Report Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 33931056-c2dc-4bec-a542-0f802f9ebad0
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Report Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 77f70f30-3935-4379-8c6c-24729c40ec75
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Report Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 2849f29b-ab00-4558-9802-6387a15bf326
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 1cff3342-8a54-4d6d-9162-eeb98680145b
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Report Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship 2b483c2e-a2c6-4d60-956b-8b38595f3f40
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Semantic Model Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship b75bdfb6-f9a9-417b-a1fc-d5af7a639dd4
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Semantic Model Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 376d6e1c-fce2-453f-8045-8ac8b1121440
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Semantic Model Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship b7190aea-5a16-46e2-afe3-f1477f85c813
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Semantic Model Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 87a910f8-c4d1-41c9-96d4-cc3982cd1022
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Report Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 0ef05135-e20e-41d4-9e01-97c2b3d3d9ff
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datamart Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship a8550a9a-48c3-41bc-8561-7a1b3a0389e9
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datamart Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship df196292-4ce4-42a3-8f6f-50dfffed88ff
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datamart Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 4265426a-b3a3-48fc-b260-5871d4450e5f
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datamart Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship c16c9a5a-5e3f-467d-b5d1-ce8f5fa7ba5d
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datasource Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 19cc71b1-9c86-429e-ae67-f4da091fb730
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dataflow Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship bbb2a327-b23d-4eef-b651-0d01cd5517fa
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dataflow Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship e17a8262-437f-45fb-be15-48105d7ce731
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dataflow Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 530ce6fc-b26f-4717-9773-8a71016552d0
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dataflow Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship b69cd7f6-cf70-4d42-85dc-3620a2dd817f
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dataflow Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 36b38ee2-3919-4861-9a51-ec48ad12ce4a
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datamart Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 71ec1d65-b946-4f37-966a-2878068e9cac
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile Dashboard ID'
+	toColumn: Dashboards.'Dashboard ID'
+
+relationship 5055860f-154f-4cf9-bc91-2dafb6f2603f
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship c0685ac6-f553-4b15-8d86-ab3f898cd94b
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 79f13d46-2b4b-43f9-8fbc-02e171344a65
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 7e5e89ce-636b-445d-947d-4c866beb2f02
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 2340b710-9197-4b16-922f-737d49c8338f
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship 2d19f856-54b7-433a-bad2-c43ac6a67cfc
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 8872f8c7-03df-4ca7-a745-e3f0b38d51a8
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile Report ID'
+	toColumn: Reports.'Report ID'
+
+relationship 56520942-4c15-4bcf-9705-ca8b774316da
+	isActive: false
+	state: ready
+	fromColumn: 'Dashboard Permissions'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 9847561f-7a40-475f-9044-d9f06238aa15
+	crossFilteringBehavior: bothDirections
+	state: ready
+	fromColumn: 'Dataflow Permissions'.'Dataflow ID'
+	toColumn: Dataflows.'Dataflow ID'
+
+relationship dc8b7cfe-f294-4989-81cd-6c02e03bcda5
+	isActive: false
+	state: ready
+	fromColumn: 'Report Organizational Links'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 9a8cfe59-63a0-4186-a371-f1caed2d59ad
+	isActive: false
+	state: ready
+	fromColumn: 'Dashboard Permissions'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 4ae52064-acd8-45dd-ae08-ffdaaf64a867
+	isActive: false
+	state: ready
+	fromColumn: 'Dashboard Permissions'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship c6a66efc-5276-441d-9440-6125c6749c55
+	isActive: false
+	state: ready
+	fromColumn: 'Dashboard Permissions'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 25a4d5d6-559c-4cd0-8c0d-c6f556f8f5ee
+	isActive: false
+	state: ready
+	fromColumn: 'Dataflow Permissions'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 5719a16f-4e74-40ba-ba1a-7fbac26d78e5
+	crossFilteringBehavior: bothDirections
+	state: ready
+	fromColumn: 'Dashboard Permissions'.'Dashboard ID'
+	toColumn: Dashboards.'Dashboard ID'
+
+relationship e9d688fe-55e7-4171-9952-aa61065bd297
+	isActive: false
+	state: ready
+	fromColumn: 'Dashboard Permissions'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 51ae90cf-0d66-4dd7-b46e-9bdc55ee442b
+	isActive: false
+	state: ready
+	fromColumn: 'Report Organizational Links'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 82c12cd1-ac89-465c-a6c3-c2fb658b899f
+	isActive: false
+	state: ready
+	fromColumn: 'Workspace Permissions'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 2658422f-4ef0-4906-9667-f7d28c133e90
+	isActive: false
+	state: ready
+	fromColumn: 'Dataflow Permissions'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship d631d4c1-a006-410e-ba54-578c2f5e855d
+	isActive: false
+	state: ready
+	fromColumn: 'Datamart Permissions'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 6d34881f-d3fd-45be-b37c-0f7815342d93
+	crossFilteringBehavior: bothDirections
+	state: ready
+	fromColumn: 'Datamart Permissions'.'Datamart ID'
+	toColumn: Datamarts.'Datamart ID'
+
+relationship 987a4f91-0f07-4c67-a11a-14dac4726839
+	isActive: false
+	state: ready
+	fromColumn: 'Workspace Permissions'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 363ad936-a2f0-433e-88be-f36f3e3c4935
+	isActive: false
+	state: ready
+	fromColumn: 'Workspace Permissions'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship c0a23934-45c1-4361-8688-994dbd9b3915
+	isActive: false
+	state: ready
+	fromColumn: 'Datamart Permissions'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 407eb02e-5551-436d-a301-153546bb9e14
+	isActive: false
+	state: ready
+	fromColumn: 'Datamart Permissions'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 1c9e4941-c69f-4387-806b-fcdfc1604298
+	state: ready
+	fromColumn: 'Report Organizational Links'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 091f2efd-87e0-419d-9a65-8ef31ac8b135
+	state: ready
+	fromColumn: 'Report Organizational Links'.'Report ID'
+	toColumn: Reports.'Report ID'
+
+relationship 4d2907c2-c283-42ce-8f4f-7603d9c7c1fa
+	isActive: false
+	state: ready
+	fromColumn: 'Datamart Permissions'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship f85107c7-35d1-418d-9c83-65cea6a1d014
+	isActive: false
+	state: ready
+	fromColumn: 'Datamart Permissions'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 5c6fbe6b-9f42-4920-9713-b0698d92b133
+	state: ready
+	fromColumn: 'Report Organizational Links'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship f3513f5e-e824-4dd2-98de-4ecd4a0120b2
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Permissions'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 1969b6b0-828b-4ddc-8b55-f780108af212
+	state: ready
+	fromColumn: 'Report Organizational Links'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship 560f97e0-7b7c-475b-add9-102f0aa94b49
+	isActive: false
+	state: ready
+	fromColumn: 'Report Permissions'.'App ID'
+	toColumn: Apps.'App ID'
+
+relationship fc1d7081-cf0f-4678-b448-854d56bd80a0
+	isActive: false
+	state: ready
+	fromColumn: 'Report Permissions'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship f1d22d4b-82a3-4e89-adda-13ab11f49b75
+	isActive: false
+	state: ready
+	fromColumn: 'Report Permissions'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship d9ccc617-374d-4f09-8f58-0dc563f47ad8
+	isActive: false
+	state: ready
+	fromColumn: 'Report Permissions'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 89c11853-df78-4d7b-b98f-ba20f58c9030
+	isActive: false
+	state: ready
+	fromColumn: 'Report Permissions'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 8ba71c2d-a08d-42ec-85ce-93adb6a84c8d
+	crossFilteringBehavior: bothDirections
+	state: ready
+	fromColumn: 'Report Permissions'.'Report ID'
+	toColumn: Reports.'Report ID'
+
+relationship 282f112f-86c4-4e61-b4b0-df0588c5406d
+	isActive: false
+	state: ready
+	fromColumn: 'Report Permissions'.'Semantic Model ID'
+	toColumn: 'Semantic Models'.'Semantic Model ID'
+
+relationship c8e90b9f-5865-48db-825f-2bf9921befdc
+	state: ready
+	fromColumn: 'Report Organizational Links'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 496419ea-c426-40df-9652-d79c77ea4c31
+	isActive: false
+	state: ready
+	fromColumn: 'Workspace Permissions'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship cfe1cb7b-80ac-4c9b-ae8f-c5d9f1434cb8
+	crossFilteringBehavior: bothDirections
+	state: ready
+	fromColumn: 'Workspace Permissions'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 1a4cf098-8ec2-436f-b1ca-36b23088e329
+	isActive: false
+	state: ready
+	fromColumn: 'Dataflow Permissions'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 1764792d-4af2-4a7a-8cf8-5f30a2743933
+	isActive: false
+	state: ready
+	fromColumn: 'Dataflow Permissions'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 2e81e2bc-b651-4479-891f-2f19551b60c3
+	isActive: false
+	state: ready
+	fromColumn: 'Dataflow Permissions'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship f4fb90d8-8adf-438e-8e64-974dd2eb289d
+	isActive: false
+	state: ready
+	fromColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 252a8647-a5cf-4b6f-9214-67e34ca332e2
+	state: ready
+	fromColumn: 'Deployment Pipeline Permissions'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 34447a1b-5de2-4b82-903d-57bec46c5d41
+	isActive: false
+	state: ready
+	fromColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship 4be56857-dcdc-4c1c-a0bb-a80b8c002aac
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Permissions'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship ba8c88f5-6a9d-41d9-828e-02a06a886e25
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Permissions'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 329fe910-9d89-4231-96e4-09beeb7a12df
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Permissions'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship d9bb2aa0-2ece-476e-af11-b69d83474057
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Permissions'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 001c4a04-57c5-4020-a62f-40571950d212
+	isActive: false
+	state: ready
+	fromColumn: 'Report Permissions'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship b3b04531-4ce5-403d-aa6b-f77280deae1b
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datasource ID'
+	toColumn: Datasources.'Datasource ID'
+
+relationship 316457d5-c4c7-42fc-920a-5ff55b2a4e4d
+	isActive: false
+	state: ready
+	fromColumn: Workspaces.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship f707aaa1-b741-4656-b672-b9efa57c32c1
+	isActive: false
+	state: ready
+	fromColumn: Workspaces.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 214af740-57f5-4263-8507-1b72ece5c438
+	isActive: false
+	state: ready
+	fromColumn: Workspaces.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 86408b97-ec84-4c37-8719-7f6ac677bf48
+	isActive: false
+	state: ready
+	fromColumn: Workspaces.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship c66c447b-a58d-4561-a522-0d22a532f56c
+	state: ready
+	fromColumn: 'Capacity Admins'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship a528c3ac-a25b-4077-be42-fef68edd5754
+	isActive: false
+	joinOnDateBehavior: datePartOnly
+	state: ready
+	fromColumn: 'Semantic Models'.'Semantic Model Created Date'
+	toColumn: Date.Date
+
+relationship 34ebab6a-c69d-4012-be88-3b48b37214a9
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datasource Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship cc1c188f-2939-4693-bfce-795e8bd9092a
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datasource Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 701b40fd-5f62-4f95-909f-6520ad7de083
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datasource Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship 2aeb143f-0791-4f92-b12e-3fad0d759877
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Datasource Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 331acf67-fa5f-4385-acdf-346559f7af96
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Semantic Model Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship a0f69ae2-d2cd-4426-8a19-7e381a72634f
+	isActive: false
+	state: ready
+	fromColumn: 'Power BI Lineage'.'Dashboard Tile App ID'
+	toColumn: Apps.'App ID'
+
+relationship da22e2cf-ad3a-4067-a066-8ef3efd0bbe5
+	isActive: false
+	state: ready
+	fromColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship ff68d1e0-3ac0-42e0-837f-c88be6e26d7e
+	isActive: false
+	state: ready
+	fromColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 0bf3d735-c699-41b6-81f0-d040b9c295fa
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Roles'.'Workspace ID'
+	toColumn: Workspaces.'Workspace ID'
+
+relationship cb763022-3dad-446f-827b-6a2314f69a98
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Table Sources'.'Domain ID'
+	toColumn: Domains.'Domain ID'
+
+relationship 597f4146-9795-4575-9697-3c604c598fab
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Table Sources'.'Deployment Pipeline Stage ID'
+	toColumn: 'Deployment Pipeline Stages'.'Deployment Pipeline Stage ID'
+
+relationship d67196a5-62ff-4ffd-bbaf-23d95844dfea
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Table Sources'.'Deployment Pipeline ID'
+	toColumn: 'Deployment Pipelines'.'Deployment Pipeline ID'
+
+relationship 94bcdbc5-5808-415c-96eb-381451f1e2da
+	isActive: false
+	state: ready
+	fromColumn: 'Semantic Model Table Sources'.'Capacity ID'
+	toColumn: Capacities.'Capacity ID'
+
+relationship 957a906c-e8a2-4a09-a549-e86bf4c8524b
+	isActive: false
+	joinOnDateBehavior: datePartOnly
+	state: ready
+	fromColumn: Reports.'Report Created Date'
+	toColumn: Date.Date
+

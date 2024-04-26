@@ -1,0 +1,197 @@
+table 'Report Permissions'
+	lineageTag: 2823ed5a-2c29-4b7d-b596-0b624cf80c62
+	sourceLineageTag: [dbo].[ReportPermissions]
+
+	measure 'Report Permissions Count' =
+			CALCULATE (
+			    COUNTROWS('Report Permissions'),
+			    'Reports'[Report ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Report Permissions'[App ID], 'Apps'[App ID] ),
+			    USERELATIONSHIP ( 'Report Permissions'[Semantic Model ID], 'Semantic Models'[Semantic Model ID] ),
+			    USERELATIONSHIP ( 'Report Permissions'[Report ID], 'Reports'[Report ID] ),
+			    USERELATIONSHIP ( 'Report Permissions'[Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Report Permissions'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Report Permissions'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Report Permissions'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Report Permissions'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 567cd09a-43fc-4ea5-9501-5497fbd49780
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 52606578-6d9a-4ce2-b494-7d1d9db10c21
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 1f591b0d-a3c5-4973-80af-658e9102f23e
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 34fae097-dc97-4a2c-b7c3-f69a3251cffc
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: f7de3110-9e36-4fc3-890d-73f09988306a
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 84a3a048-d6fd-4bb6-82c0-be4dafaa299d
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 5aae993b-1f6b-40db-b66f-87b72db97504
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 8de11657-df5d-4c4c-8aac-561ee05d005f
+		sourceLineageTag: AppID
+		summarizeBy: none
+		sourceColumn: AppID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: ddddca5d-7103-47ca-a924-051618b3ff3f
+		sourceLineageTag: ReportID
+		summarizeBy: none
+		sourceColumn: ReportID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Permissions
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4877d200-124d-4c71-9bc1-3a237625e89f
+		sourceLineageTag: Permissions
+		summarizeBy: none
+		sourceColumn: Permissions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email Address'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 610bf2c8-f771-4536-8f7f-15819d57af26
+		sourceLineageTag: EmailAddress
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Display Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9ca9ec25-0863-4e48-a78f-16fc76066954
+		sourceLineageTag: DisplayName
+		summarizeBy: none
+		sourceColumn: DisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Identifier
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1d129181-678d-4e9b-9831-45793b610cbd
+		sourceLineageTag: Identifier
+		summarizeBy: none
+		sourceColumn: Identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c9875535-e32d-4953-8032-2c923a1fbcf3
+		sourceLineageTag: GraphID
+		summarizeBy: none
+		sourceColumn: GraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Principal Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 40b5ff31-8310-4006-8a29-4b5ed15bba64
+		sourceLineageTag: PrincipalType
+		summarizeBy: none
+		sourceColumn: PrincipalType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a7b87cad-9cde-44ed-ab64-4ef9c3ababa3
+		sourceLineageTag: UserType
+		summarizeBy: none
+		sourceColumn: UserType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ReportPermissions = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: ReportPermissions
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

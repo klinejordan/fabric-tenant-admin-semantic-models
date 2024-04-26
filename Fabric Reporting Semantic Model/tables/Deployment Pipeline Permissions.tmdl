@@ -1,0 +1,61 @@
+table 'Deployment Pipeline Permissions'
+	lineageTag: 9c7430b7-158a-47d2-9bcc-5eb5844f16a6
+	sourceLineageTag: [dbo].[DeploymentPipelinePermissions]
+
+	measure 'Deployment Pipeline Permissions Count' = COUNTROWS ( 'Deployment Pipeline Permissions' )
+		dataType: int64
+		formatString: #,0
+		lineageTag: cc53ba01-251b-4756-ab60-e11ba8301393
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: d39d1d60-0503-4565-a548-eac5633c1fb5
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Permissions
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 09a3983c-8ac3-49a4-8a4a-65902e90ecf7
+		sourceLineageTag: Permissions
+		summarizeBy: none
+		sourceColumn: Permissions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Identifier
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f3589519-b596-4105-92f1-fa69ab759181
+		sourceLineageTag: Identifier
+		summarizeBy: none
+		sourceColumn: Identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Principal Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d96cd9ad-76ce-4691-9a26-a5d67af6b214
+		sourceLineageTag: PrincipalType
+		summarizeBy: none
+		sourceColumn: PrincipalType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DeploymentPipelinePermissions = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: DeploymentPipelinePermissions
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

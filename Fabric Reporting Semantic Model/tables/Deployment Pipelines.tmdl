@@ -1,0 +1,54 @@
+table 'Deployment Pipelines'
+	lineageTag: 085c831d-fa04-4e56-a833-d981a9115013
+	sourceLineageTag: [dbo].[DeploymentPipelines]
+
+	measure 'Deployment Pipeline Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Deployment Pipeline Stages'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Deployment Pipeline Stages'[Deployment Pipeline Stage Workspace ID], 'Workspaces'[Workspace ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: cf3aa6be-3d60-4113-b1be-eadd1c6ed4ff
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: a06df4c5-6b04-43da-8cda-0921848f0422
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1321161d-f958-4207-be78-1ded63761223
+		sourceLineageTag: DeploymentPipelineName
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Description'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a2d92a6b-4e8e-4433-96ae-01e5b383bbeb
+		sourceLineageTag: DeploymentPipelineDescription
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DeploymentPipelines = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: DeploymentPipelines
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

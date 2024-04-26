@@ -1,0 +1,172 @@
+table Dashboards
+	lineageTag: cf093ef5-a52c-443d-9d52-8a98ce907570
+	sourceLineageTag: [dbo].[Dashboards]
+
+	measure 'Dashboard Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Power BI Lineage'[Dashboard ID] ),
+			    'Power BI Lineage'[Dashboard ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard App ID], 'Apps'[App ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dashboard Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: fd291bee-64db-4eef-a496-f48cf21910ea
+
+	measure 'Selected Dashboard' =
+			IF (
+			    HASONEVALUE ( 'Dashboards'[Dashboard ID] ),
+			    SELECTEDVALUE ( 'Dashboards'[Dashboard Name] ),
+			    "Select a single dashboard"
+			)
+		dataType: string
+		lineageTag: 09f747d0-2a33-4b6e-95ff-ae0ea6e47579
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: f3a7d4ae-8d35-4a4a-a8d1-cf7285dcb9cd
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 7cd0c22c-c66d-493a-ac38-97c8199541bc
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 2b85d1ac-ec05-410e-b1c1-6b1121fdfb3d
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 39dd1d7b-186a-4583-9456-9507fd986dd7
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 01c87962-8e16-4236-80ce-78d54cfac736
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dashboard ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 5fef96f4-63b4-41db-96ab-3ac8146c42a6
+		sourceLineageTag: DashboardID
+		summarizeBy: none
+		sourceColumn: DashboardID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: b9856d84-4ccd-4d3d-8902-3e89c1d3ffc4
+		sourceLineageTag: AppID
+		summarizeBy: none
+		sourceColumn: AppID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dashboard Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4048fb61-738e-4f29-b058-0e12909d58bd
+		sourceLineageTag: DashboardName
+		summarizeBy: none
+		sourceColumn: DashboardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Ready Only'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: a9782609-5d84-4bb6-91ab-0b66d603b6e8
+		sourceLineageTag: IsReadyOnly
+		summarizeBy: none
+		sourceColumn: IsReadyOnly
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sensitivity Label ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d0387ecb-2af3-49a6-a3ca-432dd202091a
+		sourceLineageTag: SensitivityLabelID
+		summarizeBy: none
+		sourceColumn: SensitivityLabelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Endorsement
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 74bd3310-5be6-41a3-9bef-731ba14e8f67
+		sourceLineageTag: Endorsement
+		summarizeBy: none
+		sourceColumn: Endorsement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Endorsement Certified By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fbdfe2db-1774-4f5a-ae5f-2b4f7d223d29
+		sourceLineageTag: EndorsementCertifiedBy
+		summarizeBy: none
+		sourceColumn: EndorsementCertifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dashboards = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Dashboards
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

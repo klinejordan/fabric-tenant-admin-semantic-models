@@ -1,0 +1,96 @@
+table 'Deployment Pipeline Stages'
+	lineageTag: d20ff4ec-c6df-4ce1-b1ec-460b2315458a
+	sourceLineageTag: [dbo].[DeploymentPipelineStages]
+
+	measure 'Deployment Pipeline Stage Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] ),
+			    'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Deployment Pipeline Stages'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Deployment Pipeline Stages'[Deployment Pipeline Stage Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Deployment Pipeline Stages'[Deployment Pipeline Stage Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Deployment Pipeline Stages'[Deployment Pipeline Stage Domain ID], 'Domains'[Domain ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: b2cd4e12-315c-48a7-b38e-888515f15dc8
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: c72ebcf4-b51c-4832-b0c3-0f4900d0c666
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 412a7c70-7170-49b4-930e-cc234067af79
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage Order'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2f69d73e-b167-493d-a1d8-f36cfa09da8c
+		sourceLineageTag: DeploymentPipelineStageOrder
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 91b43736-0035-4add-99eb-5db29f507210
+		sourceLineageTag: DeploymentPipelineStageWorkspaceID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageWorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 8e74115c-1535-48f6-bbf9-701f03909b7a
+		sourceLineageTag: DeploymentPipelineStageCapacityID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageCapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 52db4d10-bb9e-45dc-9328-43638096e545
+		sourceLineageTag: DeploymentPipelineStageDomainID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageDomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DeploymentPipelineStages = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: DeploymentPipelineStages
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

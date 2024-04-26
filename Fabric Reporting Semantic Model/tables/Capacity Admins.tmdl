@@ -1,0 +1,42 @@
+table 'Capacity Admins'
+	lineageTag: 59e92c9c-df2e-47ce-a817-54dac464539f
+	sourceLineageTag: [dbo].[CapacityAdmins]
+
+	measure 'Capacity Admin Count' = COUNTROWS ( 'Capacity Admins' )
+		dataType: int64
+		formatString: #,0
+		lineageTag: 019fe721-350b-46b7-bd9f-f3d7f00dfba4
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isKey
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: cd502e6c-7e78-40ef-b7b4-5c926500d16d
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity Admins'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 79449d1b-7e35-4fcd-bd7c-74ce66c77895
+		sourceLineageTag: CapacityAdmins
+		summarizeBy: none
+		sourceColumn: CapacityAdmins
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CapacityAdmins = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: CapacityAdmins
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

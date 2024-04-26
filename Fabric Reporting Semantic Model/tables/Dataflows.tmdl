@@ -1,0 +1,282 @@
+table Dataflows
+	lineageTag: d3f2032d-84a5-45e2-a1bd-3248682838fc
+	sourceLineageTag: [dbo].[Dataflows]
+
+	measure 'Dataflow Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Power BI Lineage'[Dataflow ID] ),
+			    'Power BI Lineage'[Dataflow ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dataflow Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dataflow Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dataflow Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dataflow Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Dataflow Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 684acc06-9673-471d-927a-339e4735b5c5
+
+	measure 'Selected Dataflow' =
+			IF (
+			    HASONEVALUE ( 'Dataflows'[Dataflow ID] ),
+			    SELECTEDVALUE ( 'Dataflows'[Dataflow Name] ),
+			    "Select a single dataflow"
+			)
+		dataType: string
+		lineageTag: 33a5a7d6-7071-46a9-914a-1722ee0c86c8
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 428f5ae8-6dd1-4c32-a467-a6607c95702e
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 709fbfbb-f2f0-4a6c-9dea-1b7933cefeb4
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 75f95064-1cf3-4216-9b9e-6d0dd8e62396
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 2085859d-22a5-46bd-9303-4047a8e2d5e3
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: bb0e8c04-31ff-4ca7-9305-c3dcefcb6d47
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 0ad52ce7-d8c3-4626-a99c-f245e2d986aa
+		sourceLineageTag: DataflowID
+		summarizeBy: none
+		sourceColumn: DataflowID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 35d59bad-67cd-411c-a30c-9c05f76ae61e
+		sourceLineageTag: DataflowName
+		summarizeBy: none
+		sourceColumn: DataflowName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Configured By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 707b7216-d008-4be1-b53b-25193072c2f0
+		sourceLineageTag: DataflowConfiguredBy
+		summarizeBy: none
+		sourceColumn: DataflowConfiguredBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Configured By Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bcd88538-bd2b-4165-990f-a292166b6724
+		sourceLineageTag: DataflowConfiguredByGraphID
+		summarizeBy: none
+		sourceColumn: DataflowConfiguredByGraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Modified By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fe61b636-8541-4bd0-bd92-79334a50b13e
+		sourceLineageTag: DataflowModifiedBy
+		summarizeBy: none
+		sourceColumn: DataflowModifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Modified By Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 16d70fc6-231a-4f92-8cc4-23ce377351aa
+		sourceLineageTag: DataflowModifiedByGraphID
+		summarizeBy: none
+		sourceColumn: DataflowModifiedByGraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Modified Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 7d2eadd7-8efd-4d64-836c-90dbcc9e6714
+		sourceLineageTag: DataflowModifiedDatetime
+		summarizeBy: none
+		sourceColumn: DataflowModifiedDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Description'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b0399b74-4a3b-422c-8579-49292b4cd9f9
+		sourceLineageTag: DataflowDescription
+		summarizeBy: none
+		sourceColumn: DataflowDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Model URL'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 11e5510a-4f73-4414-8c67-183f274e2493
+		sourceLineageTag: DataflowModelURL
+		dataCategory: WebURL
+		summarizeBy: none
+		sourceColumn: DataflowModelURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sensitivity Label ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 99462d6f-8776-403f-858d-661e7ac74320
+		sourceLineageTag: SensitivityLabelID
+		summarizeBy: none
+		sourceColumn: SensitivityLabelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Endorsement
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8b29b055-cd26-447e-8905-537569f8b19e
+		sourceLineageTag: Endorsement
+		summarizeBy: none
+		sourceColumn: Endorsement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Endorsement Certified By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 291e02ad-5151-4062-82c4-db51bf9d68c2
+		sourceLineageTag: EndorsementCertifiedBy
+		summarizeBy: none
+		sourceColumn: EndorsementCertifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Days'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: be3b17cd-5ee2-45fb-9519-88f43a81c3a5
+		sourceLineageTag: RefreshScheduleDays
+		summarizeBy: none
+		sourceColumn: RefreshScheduleDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Times'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 840441da-0043-43cb-984b-b0b5484cbeed
+		sourceLineageTag: RefreshScheduleTimes
+		summarizeBy: none
+		sourceColumn: RefreshScheduleTimes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Enabled'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 0ff2867f-8857-40ef-883b-b310eda2876e
+		sourceLineageTag: RefreshScheduleEnabled
+		summarizeBy: none
+		sourceColumn: RefreshScheduleEnabled
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Time Zone ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 19d2516a-4845-450a-9d16-b32b353c1c96
+		sourceLineageTag: RefreshScheduleTimeZoneID
+		summarizeBy: none
+		sourceColumn: RefreshScheduleTimeZoneID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Notify Option'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8d56dc67-bada-4d6e-b136-30fd493cf6f2
+		sourceLineageTag: RefreshScheduleNotifyOption
+		summarizeBy: none
+		sourceColumn: RefreshScheduleNotifyOption
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dataflow Modified Date'
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		sourceProviderType: datetime2
+		lineageTag: 7d2eadd7-8efd-4d64-836c-90dbcc9e6715
+		sourceLineageTag: DataflowModifiedDate
+		summarizeBy: none
+		sourceColumn: DataflowModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dataflows = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Dataflows
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

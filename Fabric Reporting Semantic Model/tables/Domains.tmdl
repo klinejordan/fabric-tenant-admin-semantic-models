@@ -1,0 +1,75 @@
+table Domains
+	lineageTag: 68788616-39da-4bc5-a925-2ea561d2dedc
+	sourceLineageTag: [dbo].[Domains]
+
+	measure 'Domain Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Workspaces'[Domain ID] ),
+			    'Domains'[Domain ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Workspaces'[Domain ID], 'Domains'[Domain ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 2cb4d330-c9ca-4ef8-889f-4e01bcb89081
+
+	column 'Domain ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 95a0063f-191a-48f7-96b8-a5ca23c1c60b
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 341802b3-2ad6-4908-86c0-17f2a5546d69
+		sourceLineageTag: DomainName
+		summarizeBy: none
+		sourceColumn: DomainName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain Description'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e27edcd1-5a88-4500-bbbd-bb59266eff02
+		sourceLineageTag: DomainDescription
+		summarizeBy: none
+		sourceColumn: DomainDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Domain ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: efc0beaa-ad34-4d50-91d1-e26ff66c96e9
+		sourceLineageTag: ParentDomainID
+		summarizeBy: none
+		sourceColumn: ParentDomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contributors Scope'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5401868d-a689-40da-8a7d-a0bbbce4ced2
+		sourceLineageTag: ContributorsScope
+		summarizeBy: none
+		sourceColumn: ContributorsScope
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Domains = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Domains
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

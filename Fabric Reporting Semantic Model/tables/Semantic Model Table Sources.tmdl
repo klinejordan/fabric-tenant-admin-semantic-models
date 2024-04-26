@@ -1,0 +1,122 @@
+table 'Semantic Model Table Sources'
+	lineageTag: cc3aedbd-f603-4fdf-97e6-a8b8ad70b634
+	sourceLineageTag: [dbo].[SemanticModelTableSources]
+
+	measure 'Semantic Model Table Source Count' =
+			CALCULATE (
+			    COUNTROWS ( 'Semantic Model Table Sources' ),
+			    USERELATIONSHIP ( 'Semantic Model Table Sources'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Table Sources'[Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Table Sources'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Table Sources'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Table Sources'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Table Sources'[Semantic Model ID], 'Semantic Models'[Semantic Model ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: b3192f4b-2e2e-47ac-bbb2-6a876aa90104
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: e8afe896-725d-46c6-aa4d-c1a840ad20b6
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 31e7de53-921c-4928-8a30-303955139fc7
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 6b612446-61b7-4a43-a8a1-5c23f44662df
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 893c47f8-ed3e-4d7b-af23-6cdbb579551a
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 8662a06d-b1d9-4b74-acf9-5adc2b961902
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 753f9db2-b872-46b6-9726-1b45e0bd3ce2
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Table Name Distinct'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: b33d61e7-29db-4c34-8fd2-406fb6002a31
+		sourceLineageTag: TableNameDistinct
+		summarizeBy: none
+		sourceColumn: TableNameDistinct
+
+		annotation SummarizationSetBy = Automatic
+
+	column Expression
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1adcb35a-ba6d-42dc-b595-1ffb76963951
+		sourceLineageTag: Expression
+		summarizeBy: none
+		sourceColumn: Expression
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SemanticModelTableSources = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: SemanticModelTableSources
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

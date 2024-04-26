@@ -1,0 +1,368 @@
+table 'Semantic Models'
+	lineageTag: a6f06d5c-d8f2-4f5b-b121-a515e5d1ca9f
+	sourceLineageTag: [dbo].[SemanticModels]
+
+	measure 'Semantic Model Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Power BI Lineage'[Semantic Model ID] ),
+			    KEEPFILTERS ( 'Power BI Lineage'[Semantic Model ID] <> "00000000-0000-0000-0000-00000000" ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Semantic Model Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Semantic Model Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Semantic Model Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Semantic Model Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Semantic Model Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8de20879-3897-4e1e-ba08-6da72919261d
+
+	measure 'Semantic Model Created Count' =
+			CALCULATE (
+			    [Semantic Model Count],
+			    NOT ( ISBLANK ( 'Semantic Models'[Semantic Model Created Date] ) ),
+			    USERELATIONSHIP ( 'Semantic Models'[Semantic Model Created Date], 'Date'[Date] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 24c38693-3521-401b-ba07-7ef8489b9bda
+
+	measure 'Selected Semantic Model' =
+			IF (
+			    HASONEVALUE ( 'Semantic Models'[Semantic Model ID] ),
+			    SELECTEDVALUE ( 'Semantic Models'[Semantic Model Name] ),
+			    "Select a single semantic model"
+			)
+		dataType: string
+		lineageTag: f83e86c5-44f2-43c3-ac4c-0c35f3db7c94
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 35990395-a86b-4df3-b173-4ac0a5ab5e4f
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 72a9d4f6-7bba-46a3-9e94-f3eb00f03692
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: e496bbe5-ad68-4267-a8bd-6a9e9adc13b8
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 7fec4585-3099-45a3-adb2-8bdf741a39a0
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 7385a5a3-f240-4aad-85c3-aff5a23d625d
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: cab8709e-3428-452f-8f66-16524ab6ff7d
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a11194b3-ea05-44c7-8c06-ab856cfdf414
+		sourceLineageTag: SemanticModelName
+		summarizeBy: none
+		sourceColumn: SemanticModelName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Description'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2eacd5e0-c27c-4e0e-96fc-55b7450ce9a0
+		sourceLineageTag: SemanticModelDescription
+		summarizeBy: none
+		sourceColumn: SemanticModelDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Configured By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a0eb6140-d568-468e-ae9d-b68b017ab84d
+		sourceLineageTag: SemanticModelConfiguredBy
+		summarizeBy: none
+		sourceColumn: SemanticModelConfiguredBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Configured By Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b4ae1aa7-d2f0-477b-9ba5-0936181b4fe8
+		sourceLineageTag: SemanticModelConfiguredByGraphID
+		summarizeBy: none
+		sourceColumn: SemanticModelConfiguredByGraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Effective Identity Required'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 72bbfc1f-c853-4806-b8d9-341f81ff15ee
+		sourceLineageTag: IsEffectiveIdentityRequired
+		summarizeBy: none
+		sourceColumn: IsEffectiveIdentityRequired
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Effective Identity Roles Required'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: d5298d9f-fcdf-45ee-aa1f-60a7c2bbb8cf
+		sourceLineageTag: IsEffectiveIdentityRolesRequired
+		summarizeBy: none
+		sourceColumn: IsEffectiveIdentityRolesRequired
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Target Storage Mode'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 921c11a8-9a41-4411-a9ff-4dc62d003193
+		sourceLineageTag: TargetStorageMode
+		summarizeBy: none
+		sourceColumn: TargetStorageMode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Content Provider Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 88e33c9a-cea1-4e6a-a004-9002dc4e917b
+		sourceLineageTag: ContentProviderType
+		summarizeBy: none
+		sourceColumn: ContentProviderType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Schema May Not Be Up To Date'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: c159980e-7849-41df-a0c1-c6d57cc163ed
+		sourceLineageTag: SchemaMayNotBeUpToDate
+		summarizeBy: none
+		sourceColumn: SchemaMayNotBeUpToDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Schema Retrieval Error'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6cd722fb-48a3-4bb4-b3c2-a127f47cb906
+		sourceLineageTag: SchemaRetrievalError
+		summarizeBy: none
+		sourceColumn: SchemaRetrievalError
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Created Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 132a784e-a52f-489c-862d-0209a9a3f190
+		sourceLineageTag: SemanticModelCreatedDatetime
+		summarizeBy: none
+		sourceColumn: SemanticModelCreatedDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Settings URL'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2cc0c9f6-0b3e-48bd-b7bf-158df65deaac
+		sourceLineageTag: SemanticModelSettingsURL
+		dataCategory: WebURL
+		summarizeBy: none
+		sourceColumn: SemanticModelSettingsURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Lineage URL'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3959ba8d-9867-4019-acc0-da2e610179e0
+		sourceLineageTag: SemanticModelLineageURL
+		dataCategory: WebURL
+		summarizeBy: none
+		sourceColumn: SemanticModelLineageURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Permissions URL'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ddbfe855-f6d6-43c1-8a51-9e139b21abaf
+		sourceLineageTag: SemanticModelPermissionsURL
+		dataCategory: WebURL
+		summarizeBy: none
+		sourceColumn: SemanticModelPermissionsURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sensitivity Label ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 702d616e-c55e-48bc-88b6-d2fb5ffe6def
+		sourceLineageTag: SensitivityLabelID
+		summarizeBy: none
+		sourceColumn: SensitivityLabelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Endorsement
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ebeedcbd-9902-407a-8f08-c3d0ec71eaf3
+		sourceLineageTag: Endorsement
+		summarizeBy: none
+		sourceColumn: Endorsement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Endorsement Certified By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: dffb5758-8eea-4ec4-8e56-2e8f9e33d636
+		sourceLineageTag: EndorsementCertifiedBy
+		summarizeBy: none
+		sourceColumn: EndorsementCertifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Days'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ffc8aea9-765e-4540-a759-317a682d9cc9
+		sourceLineageTag: RefreshScheduleDays
+		summarizeBy: none
+		sourceColumn: RefreshScheduleDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Times'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e3bb9543-752c-4754-bb60-529bb1bd674e
+		sourceLineageTag: RefreshScheduleTimes
+		summarizeBy: none
+		sourceColumn: RefreshScheduleTimes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Enabled'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 6db173fc-3fda-4a98-8bab-ee811f55ec93
+		sourceLineageTag: RefreshScheduleEnabled
+		summarizeBy: none
+		sourceColumn: RefreshScheduleEnabled
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Time Zone ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cf503d22-c1fc-43bb-9f0e-95ee775ac07f
+		sourceLineageTag: RefreshScheduleTimeZoneID
+		summarizeBy: none
+		sourceColumn: RefreshScheduleTimeZoneID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Refresh Schedule Notify Option'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9534fc9f-f397-4e74-a4ec-429244642872
+		sourceLineageTag: RefreshScheduleNotifyOption
+		summarizeBy: none
+		sourceColumn: RefreshScheduleNotifyOption
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Direct Query Refresh Schedule Frequency'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a9317185-49af-4287-ada7-f8d1d1ca7a0e
+		sourceLineageTag: DirectQueryRefreshScheduleFrequency
+		summarizeBy: none
+		sourceColumn: DirectQueryRefreshScheduleFrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model Created Date'
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		sourceProviderType: datetime2
+		lineageTag: 132a784e-a52f-489c-862d-0209a9a3f191
+		sourceLineageTag: SemanticModelCreatedDate
+		summarizeBy: none
+		sourceColumn: SemanticModelCreatedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SemanticModels = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: SemanticModels
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

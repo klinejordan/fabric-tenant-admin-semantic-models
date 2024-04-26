@@ -1,0 +1,170 @@
+table 'Semantic Model Permissions'
+	lineageTag: b16cb51d-16a3-434a-a525-5bf6bb9c2cb2
+	sourceLineageTag: [dbo].[SemanticModelPermissions]
+
+	measure 'Semantic Model Permissions Count' =
+			CALCULATE (
+			    COUNTROWS('Semantic Model Permissions'),
+			    'Semantic Models'[Semantic Model ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Semantic Model Permissions'[Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Permissions'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Permissions'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Permissions'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Permissions'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 43400c23-de6e-43f9-8ff0-b24c4b7f7b34
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: b6f98586-840c-4aa5-ad00-ccf522749aec
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 85f7c9c2-9179-4543-a57a-0ff8a976ff7f
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: c0341644-2379-4f91-9a84-f35cc4d6aca7
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 1aa9e4ad-9f1a-4096-8a95-2de0ffaea7ac
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 339803a6-e202-48d2-b19e-26503ee3da77
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 661fa24a-d1cb-4867-bf2b-60be94bb1271
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Permissions
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1e991f3a-ce84-4c6e-9850-ea907350d4d7
+		sourceLineageTag: Permissions
+		summarizeBy: none
+		sourceColumn: Permissions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email Address'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: eb706db2-b230-4907-bdf5-ba592b890259
+		sourceLineageTag: EmailAddress
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Display Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5a025a9e-711b-47b4-a1f0-8363a243531a
+		sourceLineageTag: DisplayName
+		summarizeBy: none
+		sourceColumn: DisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Identifier
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 36fe9fde-3b5b-481f-84dd-4a6fb1fa4427
+		sourceLineageTag: Identifier
+		summarizeBy: none
+		sourceColumn: Identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6bc47798-3683-4e84-baf2-ced4f5d2281c
+		sourceLineageTag: GraphID
+		summarizeBy: none
+		sourceColumn: GraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Principal Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a924d7c0-c236-4ee5-86cb-03a076b3b769
+		sourceLineageTag: PrincipalType
+		summarizeBy: none
+		sourceColumn: PrincipalType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6bb74254-3bd7-4358-b957-1844af37372d
+		sourceLineageTag: UserType
+		summarizeBy: none
+		sourceColumn: UserType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SemanticModelPermissions = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: SemanticModelPermissions
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

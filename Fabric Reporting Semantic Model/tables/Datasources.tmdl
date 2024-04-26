@@ -1,0 +1,69 @@
+table Datasources
+	lineageTag: b59257cd-7fb5-4180-9d63-843f0e0e06ae
+	sourceLineageTag: [dbo].[Datasources]
+
+	measure 'Datasource Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Power BI Lineage'[Datasource ID] ),
+			    'Power BI Lineage'[Datasource ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datasource Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datasource Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datasource Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datasource Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datasource Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 90299f18-1ebc-4401-a079-d87c6df20b6a
+
+	column 'Datasource ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 9e314e3b-3592-432b-a62f-21ffc7781888
+		sourceLineageTag: DatasourceID
+		summarizeBy: none
+		sourceColumn: DatasourceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gateway Cluster ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8f01b2e7-792e-4f73-bfe5-2e00231e8a81
+		sourceLineageTag: GatewayClusterID
+		summarizeBy: none
+		sourceColumn: GatewayClusterID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datasource Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 17c62bda-b231-4163-a09a-7f6266179504
+		sourceLineageTag: DatasourceType
+		summarizeBy: none
+		sourceColumn: DatasourceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Connection Information'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 62292912-610d-442c-9bef-2b477d32d410
+		sourceLineageTag: ConnectionInformation
+		summarizeBy: none
+		sourceColumn: ConnectionInformation
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Datasources = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Datasources
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

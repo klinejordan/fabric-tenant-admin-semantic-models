@@ -1,0 +1,152 @@
+table 'Semantic Model Role Members'
+	lineageTag: 9878859d-2928-476b-988d-c105c7672745
+	sourceLineageTag: [dbo].[SemanticModelRoleMembers]
+
+	measure 'Semantic Model Role Member Count' =
+			CALCULATE (
+			    COUNTROWS ( 'Semantic Model Role Members' ),
+			    USERELATIONSHIP ( 'Semantic Model Role Members'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Role Members'[Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Role Members'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Role Members'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Role Members'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Semantic Model Role Members'[Semantic Model ID], 'Semantic Models'[Semantic Model ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 632b466d-ff45-4ad3-a611-16aa413635e5
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 15e0f84d-9dfa-4ce6-a6b3-fb9cc5b32e75
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: cde15d12-0c16-4e93-976f-2e89e1178d5a
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: a72b3382-5a66-4f4c-a7cf-284e75d13134
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 3b4d2abe-cfc8-4f0c-a2d9-1c927ebca867
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 4c5937c0-bfff-4d94-907e-2a8111c77f2e
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 62bbb592-ba01-4e5a-aa97-a8d78a0f0157
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role Name Distinct'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: eb43dfb3-33d8-4d45-bc97-36d1ab0c0cd6
+		sourceLineageTag: RoleNameDistinct
+		summarizeBy: none
+		sourceColumn: RoleNameDistinct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role Member Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 41a9df32-9370-45e6-96fa-096834295025
+		sourceLineageTag: RoleMemberName
+		summarizeBy: none
+		sourceColumn: RoleMemberName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role Member Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9b2025af-ea6a-4bc4-b0d6-3a069529a0d1
+		sourceLineageTag: RoleMemberGraphID
+		summarizeBy: none
+		sourceColumn: RoleMemberGraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role Member Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6aa8cc3c-619b-44f7-9bc2-5d9bf79f0e13
+		sourceLineageTag: RoleMemberType
+		summarizeBy: none
+		sourceColumn: RoleMemberType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Role Member Identity Provider'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 26f348ec-438c-4905-b990-250af232dfd5
+		sourceLineageTag: RoleMemberIdentityProvider
+		summarizeBy: none
+		sourceColumn: RoleMemberIdentityProvider
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SemanticModelRoleMembers = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: SemanticModelRoleMembers
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

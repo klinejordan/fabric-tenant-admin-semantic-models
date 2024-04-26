@@ -1,0 +1,183 @@
+table 'Report Organizational Links'
+	lineageTag: 1a7155f9-75ed-44a1-9dbb-4f75395f2792
+	sourceLineageTag: [dbo].[ReportOrganizationalLinks]
+
+	measure 'Report Organizational Link Count' =
+			CALCULATE (
+			    COUNTROWS('Report Organizational Links'),
+			    USERELATIONSHIP ( 'Report Organizational Links'[Semantic Model ID], 'Semantic Models'[Semantic Model ID] ),
+			    USERELATIONSHIP ( 'Report Organizational Links'[Report ID], 'Reports'[Report ID] ),
+			    USERELATIONSHIP ( 'Report Organizational Links'[Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Report Organizational Links'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Report Organizational Links'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Report Organizational Links'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Report Organizational Links'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 3c88da94-427a-4ae4-ba37-f4ca87e5f35b
+
+	column 'Report ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 7e539554-7206-4803-89fa-7ac6a01a0149
+		sourceLineageTag: ReportID
+		summarizeBy: none
+		sourceColumn: ReportID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 0b5f8c64-8d04-494c-ba0b-c25549408afb
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 238d7fae-1e1f-4e5f-99f5-7c90814e9072
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 2d5d32a2-62a9-4278-a727-3d52103c5bcb
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: eaabba55-e107-4b04-962d-0d1d97ebf24a
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 5fd626fe-7dd5-4cf4-88d2-6fa4666c10fc
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 8a4d8d5f-6b60-48ba-a9f2-cbcebb29fba8
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Permissions'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f62308f1-5e4f-4f16-9d2c-406dc0ce46c3
+		sourceLineageTag: ReportPermissions
+		summarizeBy: none
+		sourceColumn: ReportPermissions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Share Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: eb4a7a91-38dd-4208-9000-e4e63d590b5f
+		sourceLineageTag: ShareType
+		summarizeBy: none
+		sourceColumn: ShareType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sharer Email Address'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 96358fcc-a0bf-4627-a503-bd4628dc405c
+		sourceLineageTag: SharerEmailAddress
+		summarizeBy: none
+		sourceColumn: SharerEmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sharer Display Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b97e765c-e41a-4228-9075-539b2e96cd91
+		sourceLineageTag: SharerDisplayName
+		summarizeBy: none
+		sourceColumn: SharerDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sharer Identifier'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2cf94e78-0759-48f6-9c1d-dd9d39712c98
+		sourceLineageTag: SharerIdentifier
+		summarizeBy: none
+		sourceColumn: SharerIdentifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sharer Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4d2ddad2-cd44-4b79-95fe-bcdca87fe795
+		sourceLineageTag: SharerGraphID
+		summarizeBy: none
+		sourceColumn: SharerGraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sharer Principal Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4f93d668-5633-483a-a4aa-baeace12399a
+		sourceLineageTag: SharerPrincipalType
+		summarizeBy: none
+		sourceColumn: SharerPrincipalType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ReportOrganizationalLinks = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: ReportOrganizationalLinks
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

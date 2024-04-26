@@ -1,0 +1,123 @@
+table Capacities
+	lineageTag: d0dd5729-d827-4b6f-b859-9f65bda98c99
+	sourceLineageTag: [dbo].[Capacities]
+
+	measure 'Capacity Count' =
+			CALCULATE (
+			    COUNTROWS ( 'Capacities' ),
+			    'Capacities'[Capacity ID] <> "00000000-0000-0000-0000-00000000"
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 65382f9c-b9a0-4086-a782-c461b75d4de9
+
+	measure 'Capacity Unit Count' =
+			CALCULATE (
+			    SUM ( 'Capacities'[Capacity Units] ),
+			    'Capacities'[Capacity ID] <> "00000000-0000-0000-0000-00000000"
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 87e03c24-16a6-4d66-b911-8f8a02c929e4
+
+	measure 'Active Capacity Count' =
+			CALCULATE (
+			    [Capacity Count],
+			    'Capacities'[Capacity State] = "Active"
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: b0b7c22a-888e-4005-bed2-79f21e473ac9
+
+	measure 'Active Capacity Unit Count' =
+			CALCULATE (
+			    [Capacity Unit Count],
+			    'Capacities'[Capacity State] = "Active"
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7d86fbe0-cb17-4167-a015-bf4931e3f0a0
+
+	measure 'Selected Capacity' =
+			IF (
+			    HASONEVALUE ( 'Capacities'[Capacity ID] ),
+			    SELECTEDVALUE ( 'Capacities'[Capacity Name] ),
+			    "Select a single capacity"
+			)
+		dataType: string
+		lineageTag: 1b3aebeb-f187-4895-a2bb-5a6379e968d2
+
+	column 'Capacity ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 1d166f09-8ad1-4269-874a-df183d6baaca
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f37e6daa-6f25-481f-a175-d7a5cd35512e
+		sourceLineageTag: CapacityName
+		summarizeBy: none
+		sourceColumn: CapacityName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity State'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 292e3737-f1f6-4dbc-bea1-1fea67fe1f1c
+		sourceLineageTag: CapacityState
+		summarizeBy: none
+		sourceColumn: CapacityState
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity Region'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 95aa2c6d-dca3-4fd1-b14e-bcb5f1c85b59
+		sourceLineageTag: CapacityRegion
+		summarizeBy: none
+		sourceColumn: CapacityRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity SKU'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cb4c422b-2bf2-4133-a9b4-ec6920fcd7ef
+		sourceLineageTag: CapacitySKU
+		summarizeBy: none
+		sourceColumn: CapacitySKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity Units'
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		sourceProviderType: int
+		lineageTag: 11333485-ba54-4e01-9d6a-f4d88f559798
+		sourceLineageTag: CapacityUnits
+		summarizeBy: none
+		sourceColumn: CapacityUnits
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Capacities = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Capacities
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

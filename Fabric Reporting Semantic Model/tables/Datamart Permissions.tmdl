@@ -1,0 +1,168 @@
+table 'Datamart Permissions'
+	lineageTag: b64a3df8-a1ab-4bb4-9bfe-e63044306864
+	sourceLineageTag: [dbo].[DatamartPermissions]
+
+	measure 'Datamart Permissions Count' =
+			CALCULATE (
+			    COUNTROWS('Datamart Permissions'),
+			    'Datamarts'[Datamart ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Datamart Permissions'[Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Datamart Permissions'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Datamart Permissions'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Datamart Permissions'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Datamart Permissions'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 92a5ace9-4ddf-42cb-91fa-253bdf14ea0a
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 82599175-a6e7-4c44-80d0-c340f1db4ec3
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: addf9d23-4c92-46b5-bf2a-b809c5bc4be7
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 33d18d31-a36d-4363-a0d3-4f67d647403b
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: e1d3880f-4d0c-478f-a85e-afd5225abce6
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e0e4d786-a26f-45cb-bc74-20a76bd9c4b8
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: cf1550b3-8ee3-4feb-93af-f2c377639705
+		sourceLineageTag: DatamartID
+		summarizeBy: none
+		sourceColumn: DatamartID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Permissions
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e23d64c2-9871-4c7c-8b12-3181a62d29f0
+		sourceLineageTag: Permissions
+		summarizeBy: none
+		sourceColumn: Permissions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email Address'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e78046f8-aa93-4e43-a2dc-561f49805f0e
+		sourceLineageTag: EmailAddress
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Display Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 76bd8023-4f38-407a-afc4-f7b52641ec5f
+		sourceLineageTag: DisplayName
+		summarizeBy: none
+		sourceColumn: DisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Identifier
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d116ca53-56df-48dd-9a47-3977e086df0f
+		sourceLineageTag: Identifier
+		summarizeBy: none
+		sourceColumn: Identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8cb495fa-09e1-48ec-a0e2-574e4b3f26d3
+		sourceLineageTag: GraphID
+		summarizeBy: none
+		sourceColumn: GraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Principal Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f8ae073c-56db-4ac5-812d-ed54bddb9eff
+		sourceLineageTag: PrincipalType
+		summarizeBy: none
+		sourceColumn: PrincipalType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3e337be8-9f79-4e30-b9d8-a7b087f5f504
+		sourceLineageTag: UserType
+		summarizeBy: none
+		sourceColumn: UserType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DatamartPermissions = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: DatamartPermissions
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

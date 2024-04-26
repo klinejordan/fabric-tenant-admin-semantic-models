@@ -1,0 +1,206 @@
+table Workspaces
+	lineageTag: 5dcaa458-6b1d-49fb-9379-07210b361e33
+	sourceLineageTag: [dbo].[Workspaces]
+
+	measure 'Non Empty Workspace Count' =
+			CALCULATE (
+			    COUNTROWS ( Workspaces ),
+			    'Workspaces'[Workspace ID] <> "00000000-0000-0000-0000-00000000",
+			    'Workspaces'[Workspace State] <> "Not found",
+			    FILTER (
+			        VALUES ( Workspaces[Workspace ID] ),
+			        [Report Count] + [Semantic Model Count] + [Dataflow Count] + [Datamart Count] + [Dashboard Count] > 0
+			    ),
+			    USERELATIONSHIP ( 'Workspaces'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 83281c42-62e4-4934-b6a4-aebe41f38d67
+
+	measure 'Empty Workspace Count' =
+			CALCULATE (
+			    COUNTROWS ( Workspaces ),
+			    KEEPFILTERS ( 'Workspaces'[Workspace ID] <> "00000000-0000-0000-0000-00000000" ),
+			    KEEPFILTERS ( 'Workspaces'[Workspace State] <> "Not found" ),
+			    FILTER (
+			        VALUES ( Workspaces[Workspace ID] ),
+			        [Report Count] + [Semantic Model Count] + [Dataflow Count] + [Datamart Count] + [Dashboard Count] = 0
+			    ),
+			    USERELATIONSHIP ( 'Workspaces'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 38056e0b-4fc8-4505-bb59-1ddd6db3162f
+
+	measure 'Workspace Count' =
+			CALCULATE (
+			    COUNTROWS('Workspaces'),
+			    'Workspaces'[Workspace ID] <> "00000000-0000-0000-0000-00000000",
+			    'Workspaces'[Workspace State] <> "Not found",
+			    USERELATIONSHIP ( 'Workspaces'[Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Workspaces'[Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: e56b53c3-7cd8-492d-a71f-e605dc72424b
+
+	measure 'Selected Workspace' =
+			IF (
+			    HASONEVALUE ( Workspaces[Workspace ID] ),
+			    SELECTEDVALUE ( Workspaces[Workspace Name] ),
+			    "Select a single workspace"
+			)
+		dataType: string
+		lineageTag: adc7f1ef-666d-408b-a39c-0cde0bda5b32
+
+	column 'Workspace ID'
+		dataType: string
+		isKey
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 9f9d8e7b-9e31-4ae9-862b-d9bff6c67972
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: ac0bcb13-fed9-4e1b-8844-788ae9b22d34
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 9a1b5b71-59ad-4672-81ba-182ff284817a
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 0679de3d-2ec4-4dc4-b779-2a35e7d68f11
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 7580b6f2-f4da-4074-b28f-93d26b8d04a2
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Workspace Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7d912fb9-2c3b-4204-9a4b-0e6cdf5499e0
+		sourceLineageTag: WorkspaceName
+		summarizeBy: none
+		sourceColumn: WorkspaceName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Workspace Description'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b95f281d-f653-474a-9b03-2a6d6ea18e68
+		sourceLineageTag: WorkspaceDescription
+		summarizeBy: none
+		sourceColumn: WorkspaceDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Workspace Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7f0476b0-010c-4e76-9201-6e69daadb155
+		sourceLineageTag: WorkspaceType
+		summarizeBy: none
+		sourceColumn: WorkspaceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Workspace State'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 154aa16e-153f-49a2-8911-da485ff1ec0b
+		sourceLineageTag: WorkspaceState
+		summarizeBy: none
+		sourceColumn: WorkspaceState
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity Migration Status'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 0101e22f-82f0-4659-8f44-5625a222936a
+		sourceLineageTag: CapacityMigrationStatus
+		summarizeBy: none
+		sourceColumn: CapacityMigrationStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is On Dedicated Capacity'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: aa366b8f-c2f7-4b30-89e4-c8be4dd29cbc
+		sourceLineageTag: IsOnDedicatedCapacity
+		summarizeBy: none
+		sourceColumn: IsOnDedicatedCapacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Workspace Scan'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 4537c397-4cb1-4700-a2e2-30a298a04700
+		sourceLineageTag: LastWorkspaceScan
+		summarizeBy: none
+		sourceColumn: LastWorkspaceScan
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Workspaces = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Workspaces
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,239 @@
+table Datamarts
+	lineageTag: cb54381d-80be-4f3f-a5a2-3f5be0877ca8
+	sourceLineageTag: [dbo].[Datamarts]
+
+	measure 'Datamart Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Power BI Lineage'[Datamart ID] ),
+			    'Power BI Lineage'[Datamart ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datamart Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datamart Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datamart Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datamart Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Datamart Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 37847ee9-287c-4150-b6f8-820fe9ef1c2a
+
+	measure 'Selected Datamart' =
+			IF (
+			    HASONEVALUE ( 'Datamarts'[Datamart ID] ),
+			    SELECTEDVALUE ( 'Datamarts'[Datamart Name] ),
+			    "Select a single datamart"
+			)
+		dataType: string
+		lineageTag: d2526767-5201-4f90-bfe9-63b92dbd2d75
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: bbc58ee8-eaa1-4294-9083-63e95c3e425a
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 3c422b8c-e293-4653-ad69-55c63031d20d
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 34fc3913-71f1-4ba5-b3ef-e5c4ed933ff8
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 19ba391b-9502-4bd6-a216-7024d142f992
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: e2e30b21-f89d-4d52-b3c2-8f7859d40a5a
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 871092f1-9f5f-4d78-8f3f-104fa1697aff
+		sourceLineageTag: DatamartID
+		summarizeBy: none
+		sourceColumn: DatamartID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f2a75608-44a4-4fc7-81cb-999fcfc18933
+		sourceLineageTag: DatamartName
+		summarizeBy: none
+		sourceColumn: DatamartName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Description'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f09f62f2-7835-458f-bce1-a2cefee33317
+		sourceLineageTag: DatamartDescription
+		summarizeBy: none
+		sourceColumn: DatamartDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 80ab9df6-ae83-44c4-af75-b1a5643945b4
+		sourceLineageTag: DatamartType
+		summarizeBy: none
+		sourceColumn: DatamartType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart State'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fc60a0bd-bb73-43a4-bc92-006aa501e6a5
+		sourceLineageTag: DatamartState
+		summarizeBy: none
+		sourceColumn: DatamartState
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Status'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6d17f5a1-2211-4858-b91b-d60f1310c898
+		sourceLineageTag: DatamartStatus
+		summarizeBy: none
+		sourceColumn: DatamartStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Suspended Batch ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 64e8999c-62de-4e9b-9532-0686a6bc8762
+		sourceLineageTag: DatamartSuspendedBatchID
+		summarizeBy: none
+		sourceColumn: DatamartSuspendedBatchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Configured By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cd2993f8-fe07-4c87-992f-b8e1659abe3c
+		sourceLineageTag: DatamartConfiguredBy
+		summarizeBy: none
+		sourceColumn: DatamartConfiguredBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Configured By Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 475b9731-2032-4af7-be36-d398d1b111e0
+		sourceLineageTag: DatamartConfiguredByGraphID
+		summarizeBy: none
+		sourceColumn: DatamartConfiguredByGraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Modified By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e1cd09fc-e0a7-42fe-9f0d-114f60de7a67
+		sourceLineageTag: DatamartModifiedBy
+		summarizeBy: none
+		sourceColumn: DatamartModifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Datamart Modified Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: edb89f37-3265-44b7-b1d8-cc07d5f7da8e
+		sourceLineageTag: DatamartModifiedDatetime
+		summarizeBy: none
+		sourceColumn: DatamartModifiedDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sensitivity Label ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 88fcd3bf-c24c-45a0-84f9-dffd7934fd24
+		sourceLineageTag: SensitivityLabelID
+		summarizeBy: none
+		sourceColumn: SensitivityLabelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Endorsement
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4f8e66d9-b36e-4fa2-9c75-ddcbd6548ed1
+		sourceLineageTag: Endorsement
+		summarizeBy: none
+		sourceColumn: Endorsement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Endorsement Certified By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cdb17b79-6cea-47a1-8d4b-7ad1e38193d6
+		sourceLineageTag: EndorsementCertifiedBy
+		summarizeBy: none
+		sourceColumn: EndorsementCertifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Datamarts = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Datamarts
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

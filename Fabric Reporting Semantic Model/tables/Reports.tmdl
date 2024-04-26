@@ -1,0 +1,326 @@
+table Reports
+	lineageTag: 877ec563-27bb-4bbb-b25a-123274abdc97
+	sourceLineageTag: [dbo].[Reports]
+
+	measure 'Report Count' =
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Power BI Lineage'[Original Report ID] ),
+			    'Power BI Lineage'[Report ID] <> "00000000-0000-0000-0000-00000000",
+			    USERELATIONSHIP ( 'Power BI Lineage'[Report Semantic Model ID], 'Semantic Models'[Semantic Model ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Report App ID], 'Apps'[App ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Report Workspace ID], 'Workspaces'[Workspace ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Report Domain ID], 'Domains'[Domain ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Report Capacity ID], 'Capacities'[Capacity ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Report Deployment Pipeline ID], 'Deployment Pipelines'[Deployment Pipeline ID] ),
+			    USERELATIONSHIP ( 'Power BI Lineage'[Report Deployment Pipeline Stage ID], 'Deployment Pipeline Stages'[Deployment Pipeline Stage ID] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4ce3847c-0f5b-49fc-9ecf-85b628e7b583
+
+	measure 'Paginated Report Count' = CALCULATE ( [Report Count], 'Reports'[Report Type] = "PaginatedReport" )
+		dataType: int64
+		formatString: #,0
+		lineageTag: 10cca5b7-d4ea-42c7-adca-63de42cc9846
+
+	measure 'App Report Count' =
+			CALCULATE (
+			    [Report Count],
+			    'Reports'[App ID] <> "00000000-0000-0000-0000-00000000"
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: faf9ebde-9b2d-4494-909a-b38f596d0547
+
+	measure 'Report Created Count' =
+			CALCULATE (
+			    [Report Count],
+			    NOT ( ISBLANK ( 'Reports'[Report Created Date] ) ),
+			    USERELATIONSHIP ( 'Reports'[Report Created Date], 'Date'[Date] )
+			)
+		dataType: int64
+		formatString: #,0
+		lineageTag: 127c58f8-911d-43cc-bffb-028f84aa022a
+
+	column 'Workspace ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 96e27668-2e88-43b5-8e08-096b0633afb1
+		sourceLineageTag: WorkspaceID
+		summarizeBy: none
+		sourceColumn: WorkspaceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 31c0f74a-3bbd-4b8a-9553-a095b4555e90
+		sourceLineageTag: DeploymentPipelineID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deployment Pipeline Stage ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 6df647cd-8421-42e2-b13e-19766fd2181b
+		sourceLineageTag: DeploymentPipelineStageID
+		summarizeBy: none
+		sourceColumn: DeploymentPipelineStageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 7146886d-2681-4cc9-aa80-aa24908fa42e
+		sourceLineageTag: CapacityID
+		summarizeBy: none
+		sourceColumn: CapacityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: d8d3a620-315a-40b1-8300-040600e7830a
+		sourceLineageTag: DomainID
+		summarizeBy: none
+		sourceColumn: DomainID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semantic Model ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 9f986309-639a-4951-985a-ccf224191258
+		sourceLineageTag: SemanticModelID
+		summarizeBy: none
+		sourceColumn: SemanticModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App ID'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		sourceProviderType: varchar(8000)
+		lineageTag: 6ce25464-c758-4da6-aa7c-63fe111cc252
+		sourceLineageTag: AppID
+		summarizeBy: none
+		sourceColumn: AppID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report ID'
+		dataType: string
+		isKey
+		sourceProviderType: varchar(8000)
+		lineageTag: 43ce23c1-09d2-4e44-82c5-ea9a6751bf22
+		sourceLineageTag: ReportID
+		summarizeBy: none
+		sourceColumn: ReportID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Report ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4e306da1-6183-437c-a1d8-9aa5519e3155
+		sourceLineageTag: OriginalReportID
+		summarizeBy: none
+		sourceColumn: OriginalReportID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3017882f-6ddb-40b7-b2d3-bb232ddee8b6
+		sourceLineageTag: ReportName
+		summarizeBy: none
+		sourceColumn: ReportName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9d1e63ae-839a-42fd-934e-8b8440816514
+		sourceLineageTag: ReportType
+		summarizeBy: none
+		sourceColumn: ReportType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Created By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 279cd0c4-2376-4c8a-b03f-dba8349e4955
+		sourceLineageTag: ReportCreatedBy
+		summarizeBy: none
+		sourceColumn: ReportCreatedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Created By Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 57ed3954-bc6f-4cc6-a36a-f0187428f3fa
+		sourceLineageTag: ReportCreatedByGraphID
+		summarizeBy: none
+		sourceColumn: ReportCreatedByGraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Created Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: c7df13ff-b2d1-4731-9c1f-13be34e5f885
+		sourceLineageTag: ReportCreatedDatetime
+		summarizeBy: none
+		sourceColumn: ReportCreatedDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Modified By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a5298e75-28b5-48aa-8deb-a2e0ecff1783
+		sourceLineageTag: ReportModifiedBy
+		summarizeBy: none
+		sourceColumn: ReportModifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Modified By Graph ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c6152d01-7a2c-4212-bfe4-75fe670457f5
+		sourceLineageTag: ReportModifiedByGraphID
+		summarizeBy: none
+		sourceColumn: ReportModifiedByGraphID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Modified Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f5e4b4fc-7ae4-4e3c-aa41-01fbb6381bf7
+		sourceLineageTag: ReportModifiedDatetime
+		summarizeBy: none
+		sourceColumn: ReportModifiedDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report App URL'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8b223eb6-51a5-4f86-816f-f893603e32df
+		sourceLineageTag: ReportAppURL
+		dataCategory: WebURL
+		summarizeBy: none
+		sourceColumn: ReportAppURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Workspace URL'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 58187bcd-c3bd-4315-a330-fdb1a39bbbcc
+		sourceLineageTag: ReportWorkspaceURL
+		dataCategory: WebURL
+		summarizeBy: none
+		sourceColumn: ReportWorkspaceURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Permissions URL'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a944eaeb-e7b0-4a47-9676-637284cf010e
+		sourceLineageTag: ReportPermissionsURL
+		dataCategory: WebURL
+		summarizeBy: none
+		sourceColumn: ReportPermissionsURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sensitivity Label ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 87843006-0ad5-4bfa-8717-46c9ebffc84d
+		sourceLineageTag: SensitivityLabelID
+		summarizeBy: none
+		sourceColumn: SensitivityLabelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Endorsement
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cdb7dc67-5265-4588-b4b1-b606c8053155
+		sourceLineageTag: Endorsement
+		summarizeBy: none
+		sourceColumn: Endorsement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Endorsement Certified By'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3ec8f50d-f487-441b-8089-7e88f03e510a
+		sourceLineageTag: EndorsementCertifiedBy
+		summarizeBy: none
+		sourceColumn: EndorsementCertifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Created Date'
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		sourceProviderType: datetime2
+		lineageTag: c7df13ff-b2d1-4731-9c1f-13be34e5f886
+		sourceLineageTag: ReportCreatedDate
+		summarizeBy: none
+		sourceColumn: ReportCreatedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Report Modified Date'
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		sourceProviderType: datetime2
+		lineageTag: f5e4b4fc-7ae4-4e3c-aa41-01fbb6381bf8
+		sourceLineageTag: ReportModifiedDate
+		summarizeBy: none
+		sourceColumn: ReportModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Reports = entity
+		mode: directLake
+		state: ready
+		source
+			entityName: Reports
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
