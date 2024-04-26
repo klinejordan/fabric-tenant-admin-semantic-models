@@ -1,6 +1,6 @@
 expression DatabaseQuery =
 		let
-		    database = Sql.Database("HEZ2QCHHSC7UTEDVSV6M2VQ36E-V6WIDKJV5ASUZJRJE7JVAFBY4U.datawarehouse.fabric.microsoft.com", "55455ffa-76c1-462a-9d75-7bb6f4478189")
+		    database = Sql.Database("Your SQL End Point string goes here - ie BUNCHOFRANDOMNUMBERSANDLETTERS.datawarehouse.fabric.microsoft.com", "Your SQL End Point GUID Goes Here")
 		in
 		    database
 	lineageTag: 1485f2ac-cc45-43bf-b608-fb793f4cd7fd
